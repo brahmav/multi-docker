@@ -7,7 +7,7 @@ before_install:
    - docker build -t brahmav/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-   - docker run -e CI=true brahmav/react-test npm run test
+   - docker run -e CI=true brahmav/react-test npm test
 
 after_success:
    - docker build -t brahmav/multi-client ./client
