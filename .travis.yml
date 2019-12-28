@@ -22,4 +22,18 @@ after_success:
    - docker push brahmav/multi-nginx
    - docker push brahmav/multi-server
    - docker push brahmav/multi-worker
+
+deploy:
+   edge: true
+   provider: elasticbeanstalk
+   region: us-east-1
+   app: multi-Docker
+   env: MultiDocker-env-1
+   bucket_name: elasticbeanstalk-us-east-1-673616589655
+   bucket_path: docker-multi
+   on:
+      branch: master
+   access_key_id: $AWS_ACCESS_KEY
+   secret_access_key:
+      secure: $AWS_SECRET_KEY
     

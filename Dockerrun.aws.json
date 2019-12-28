@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "brahmav/multi-client",
+            "hostname": "client",
+            "essential": false
+        
+        },
+        {
+            "name": "server",
+            "image": "brahmav/multi-server",
+            "hostname": "api",
+            "essential": false  
+        },
+        {
+            "name": "worker",
+            "image": "brahmav/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "brahmav/multi-nginx",
+            "hostname": "nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links":["client", "server"]
+        }
+    ]
+}
